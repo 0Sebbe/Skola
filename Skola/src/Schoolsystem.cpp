@@ -11,18 +11,19 @@ void SchoolSystem::Run()
 		std::cout << "4. ???" << "\n";
 		std::cout << "5. ???" << "\n";
 
-		//Input
+		//Inputs for different values
 		int input;
 		std::string nameInput;
 		int ageInput;
 		std::string classInput;
 		std::string yesnoInput;
 
+		//All cases within the menus options
 		std::cin >> input;
 		switch (input)
 		{
 		case 1:
-				//Adds a student to vector Student with name and age, optional to add c
+				//Adds a student to vector Student with name and age, optional to add class
 				std::cout << "Add name: " << "\n";
 				std::cin >> nameInput;
 				std::cout << "Add age: " << "\n";
@@ -52,7 +53,7 @@ void SchoolSystem::Run()
 				}*/
 				break;
 
-
+				//Finds out if student exists
 			case 2:
 				std::cout << "Type name to search for student: " << "\n";
 				std::cin >> nameInput;
@@ -64,10 +65,9 @@ void SchoolSystem::Run()
 				//Prints a list with all students in a specific class
 				std::cout << "What class are you looking for?" << "\n\n";
 				std::cin >> nameInput;
-				
-				
-				break;
 
+				SearchClass(nameInput);
+				break;
 
 			case 4:
 
@@ -82,7 +82,7 @@ void SchoolSystem::Run()
 
 	}
 }
-
+//Adds student with name, age and optional class
 void SchoolSystem::AddStudent(std::string newName, int newAge, std::string newClasses)
 {
 	Student student;
@@ -93,6 +93,7 @@ void SchoolSystem::AddStudent(std::string newName, int newAge, std::string newCl
 	students.push_back(student);
 }
 
+//Finds out if student exists when name is typed in
 void SchoolSystem::FindStudent(std::string newName)
 {
 	Student student;
@@ -111,10 +112,9 @@ void SchoolSystem::FindStudent(std::string newName)
 		}
 	}
 }
-
+//Prints every student in the searched class
 void SchoolSystem::SearchClass(std::string newClass)
 {
-	//Jag vill att man ska skriva in en klass och då ska det printas ut alla elever som har samma klass som jag har skrivit.
 	for (auto i : students)
 	{
 		if (i.classes == newClass)
