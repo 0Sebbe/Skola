@@ -143,6 +143,7 @@
     <ClCompile Include="src\Schoolsystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Schoolclasses.h" />
     <ClInclude Include="src\Schoolsystem.h" />
     <ClInclude Include="src\Student.h" />
   </ItemGroup>
