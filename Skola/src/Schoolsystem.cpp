@@ -5,6 +5,8 @@ void SchoolSystem::Run()
 	while (true)
 	{
 		//Menu
+		std::cin.get();
+		std::cout << "\n\n";
 		std::cout << "1. Add Student" << "\n";
 		std::cout << "2. Search for Student" << "\n";
 		std::cout << "3. See all students in a class" << "\n";
@@ -23,6 +25,7 @@ void SchoolSystem::Run()
 		switch (input)
 		{
 		case 1:
+				system("CLS");
 				//Adds a student to vector Student with name and age, optional to add class
 				std::cout << "Add name: " << "\n";
 				std::cin >> nameInput;
@@ -55,6 +58,7 @@ void SchoolSystem::Run()
 
 				//Finds out if student exists
 			case 2:
+				system("CLS");
 				std::cout << "Type name to search for student: " << "\n";
 				std::cin >> nameInput;
 				FindStudent(nameInput);
@@ -62,6 +66,7 @@ void SchoolSystem::Run()
 
 
 			case 3:
+				system("CLS");
 				//Prints a list with all students in a specific class
 				std::cout << "What class are you looking for?" << "\n\n";
 				std::cin >> nameInput;
@@ -92,6 +97,13 @@ void SchoolSystem::AddStudent(std::string newName, int newAge, std::string newCl
 
 	students.push_back(student);
 }
+/*Removes a student
+void SchoolSystem::RemoveStudent(std::string newName)
+{
+	Student student;
+	std::string name = newName;
+	students.erase(name);
+}*/
 
 //Finds out if student exists when name is typed in
 void SchoolSystem::FindStudent(std::string newName)
@@ -106,10 +118,6 @@ void SchoolSystem::FindStudent(std::string newName)
 		{
 			std::cout << "Student found" << "\n";
 		}
-		else
-		{
-			std::cout << "Student not found" << "\n";
-		}
 	}
 }
 //Prints every student in the searched class
@@ -119,7 +127,7 @@ void SchoolSystem::SearchClass(std::string newClass)
 	{
 		if (i.classes == newClass)
 		{
-			std::cout << i.name << "\n";
+			std::cout << "Name:" << i.name << " Age: " << i.age << "\n";
 		}
 	}
 	
