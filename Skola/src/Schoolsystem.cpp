@@ -10,7 +10,7 @@ void SchoolSystem::Run()
 		std::cout << "1. Add Student" << "\n";
 		std::cout << "2. Search for Student" << "\n";
 		std::cout << "3. See all students in a class" << "\n";
-		std::cout << "4. ???" << "\n";
+		std::cout << "4. Remove a student" << "\n";
 		std::cout << "5. ???" << "\n";
 
 		//Inputs for different values
@@ -75,7 +75,10 @@ void SchoolSystem::Run()
 				break;
 
 			case 4:
+				std::cout << "Type the students name to remove student from system: " << "\n";
+				std::cin >> nameInput;
 
+				RemoveStudent(nameInput);
 				break;
 			case 5:
 
@@ -97,13 +100,19 @@ void SchoolSystem::AddStudent(std::string newName, int newAge, std::string newCl
 
 	students.push_back(student);
 }
-/*Removes a student
+//Removes a student
 void SchoolSystem::RemoveStudent(std::string newName)
 {
 	Student student;
 	std::string name = newName;
-	students.erase(name);
-}*/
+
+	for (int i = 0; i < students.size(); i++)
+	{
+		if (students[i].name == name) students.erase(students.begin() + i);
+	}
+
+	std::cout << "Student removed" << "\n";
+}
 
 //Finds out if student exists when name is typed in
 void SchoolSystem::FindStudent(std::string newName)
