@@ -9,11 +9,11 @@ class SchoolSystem
 {
 public:
 	void Run();
-	void AddStudent(std::string newName, int newAge, std::string newClasses);
-	void RemoveStudent(std::string newName);
-	void FindStudent(std::string newName);
-	void SearchClass(std::string newClass);
-	void RemoveClass();
+	void AddStudent();
+	void RemoveStudent();
+	void FindStudent();
+	void SearchClass();
+	void AddStudentToClass();
 
 	std::vector<Student> students;
 	std::vector<Schoolclasses> schoolclasses;
