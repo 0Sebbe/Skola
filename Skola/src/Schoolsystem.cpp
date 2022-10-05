@@ -1,17 +1,24 @@
 #include "Schoolsystem.h"
 
+template <typename T>
+void Print(T t)
+{
+	std::cout << t << "\n";
+}
+
+
 void SchoolSystem::Run()
 {
+	
 	while (true)
 	{
 		//Menu
-		std::cin.get();
-		std::cout << "\n\n";
-		std::cout << "1. Add Student" << "\n";
-		std::cout << "2. Search for Student" << "\n";
-		std::cout << "3. See all students in a class" << "\n";
-		std::cout << "4. Remove a student" << "\n";
-		std::cout << "5. Add student to class" << "\n";
+		Print("\n\n");
+		Print("1. Add student to system");
+		Print("2. Search for student and information");
+		Print("3. See all students in a class");
+		Print("4. Remove a student from the system");
+		Print("5. Add student to class or change class");
 
 		//Inputs for different values
 		int input;
@@ -26,7 +33,7 @@ void SchoolSystem::Run()
 				AddStudent();
 
 				for (auto i : students) {
-					std::cout << i.name << " " << i.age << "\n";
+					Print(i.name + ": Added to system!");
 				}
 
 				break;
@@ -34,6 +41,11 @@ void SchoolSystem::Run()
 				//Finds out if student exists
 			case 2:
 				FindStudent();
+				for (auto i : students) {
+					Print("Name: " + i.name);
+					Print(", Age : " + i.age);
+					Print(", Class: " + i.classes);
+				}
 				break;
 
 
@@ -47,6 +59,7 @@ void SchoolSystem::Run()
 				RemoveStudent();
 				break;
 			case 5:
+				//Adds student to class
 				AddStudentToClass();
 				break;
 		}
@@ -62,19 +75,18 @@ void SchoolSystem::AddStudent()
 	std::string nameInput = "";
 	int ageInput;
 	
-	std::cout << "Add name: " << "\n";
+	Print("Add name: ");
 	std::cin >> nameInput;
-	std::cout << "Add age: " << "\n";
+	Print("Add age: ");
 	std::cin >> ageInput;
+
 
 	std::string newName = nameInput;
 	int newAge = ageInput;
-	std::string newClasses = "";
 
 	Student student;
 	student.name = newName;
 	student.age = newAge;
-	student.classes = newClasses;
 
 	students.push_back(student);
 }
@@ -82,7 +94,7 @@ void SchoolSystem::AddStudent()
 //Finds out if student exists when name is typed in
 void SchoolSystem::FindStudent()
 {
-	std::cout << "Search for student: " << "\n";
+	Print("Search for student: ");
 
 	std::string input;
 	std::cin >> input;
@@ -93,19 +105,16 @@ void SchoolSystem::FindStudent()
 	{
 		if (i.name != name)
 		{
-			std::cout << "Student not found" << "\n";
+			Print("Student not found");
 			return;
 		}
 	}
-
-	std::cout << "Student found" << "\n";
 }
 
 
 //Prints every student in the searched class
 void SchoolSystem::SearchClass()
 {
-	Student student;
 	std::cout << "What class are you looking for?" << "\n\n";
 	std::string input;
 	std::cin >> input;
@@ -113,11 +122,10 @@ void SchoolSystem::SearchClass()
 
 	for (auto i : students) 
 	{
-		//debug
 		if (i.classes == classes) 
 		{
-			//debug
-			std::cout << "Name:" << i.name << " Age: " << i.age << "\n";
+			Print("Name: " + i.name);
+			Print(", Age: " + i.age);
 		}
 	}
 	
@@ -126,7 +134,7 @@ void SchoolSystem::SearchClass()
 //Removes a student
 void SchoolSystem::RemoveStudent()
 {
-	std::cout << "Type the students name to remove student from system: " << "\n";
+	Print("Type the students name to remove student from system: ");
 
 	std::string input;
 	std::cin >> input;
@@ -143,30 +151,26 @@ void SchoolSystem::RemoveStudent()
 	std::cout << "Student removed" << "\n";
 }
 
+//Adds class or changes class for existing students
 void SchoolSystem::AddStudentToClass()
 {
-	std::cout << "Type the student you want to put in a class: " << "\n";
-
-	Student student;
-
+	Print("Type the student you want to put in a class: ");
 	std::string nameInput;
 	std::cin >> nameInput;
 	std::string name = nameInput;
 
 	//Lägg till input för klass och lägg till elev i klassen
-	std::cout << "Add class: " << "\n";
+	Print("Add class: ");
 	std::string classInput;
 	std::cin >> classInput;
 	std::string classes = classInput;
 
-	for (auto i : students)
+	for (auto& i : students)
 	{
-		//debug
 		if (i.name == name)
 		{
-			//debug
 			i.classes = classes;
-			std::cout << "Added class!" << "\n";
+			Print("Added class!");
 		}
 	}
 }

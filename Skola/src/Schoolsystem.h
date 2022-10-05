@@ -16,5 +16,4 @@ public:
 	void AddStudentToClass();
 
 	std::vector<Student> students;
-	std::vector<Schoolclasses> schoolclasses;
 };
